@@ -9,7 +9,6 @@ import codecs
 import re 
 import chardet
 
-
 def sentence_emotion(sentence,senDict,degreeDict):
     '''
     判断输入的sentence的情感
@@ -71,9 +70,6 @@ def emotionWord():
         k = s.strip().split(' ')[0].decode('utf8')
         senDict[k] = float(s.strip().split(' ')[1])
     return senDict 
-
-
-
 
 def degree():
     with open('degree.txt','r') as f_in:
@@ -141,14 +137,6 @@ def scoreSent(senWord,notWord,degreeWord,segResult):
             i = senLoc[senloc + 1]
     return score 
 
-
-
-
-
-        
-
-
-
 def run():
     comments,messages = read_data()
     #text1 = key_word(comments,messages)
@@ -172,7 +160,6 @@ def run():
         wordlist1.extend(wordlist)
     return weightlist,wordlist1
 
-
 if __name__ =='__main__':
     weightlist,wordlist = run()
     with open('emotion_weight.txt','w') as f_out:
@@ -187,7 +174,3 @@ if __name__ =='__main__':
             except:
                 f_out.write(i.encode('utf8'))
             f_out.write('\n')
-
-
-
-
