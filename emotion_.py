@@ -91,10 +91,6 @@ def emotionWord1():
         senDict[s] = weight 
     return senDict 
     
-
-
-
-
 def degree():
     with open('degree.txt','r') as f_in:
         degree1 = f_in.readlines()
@@ -184,14 +180,13 @@ def run():
         wordlist1.extend(wordlist)
     return weightlist,wordlist1
 
-
 if __name__ =='__main__':
     weightlist,wordlist = run()
-    with open('emotion_weight_final.txt','w') as f_out:
+    with open('emotion_weight.txt','w') as f_out:
         for i in weightlist:
             f_out.write(str(i))
             f_out.write('\n')
-    with open('emotion_word_final.txt','w') as f_out:
+    with open('emotion_word.txt','w') as f_out:
         print wordlist 
         for i in wordlist:
             try:
