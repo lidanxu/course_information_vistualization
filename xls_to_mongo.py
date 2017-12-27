@@ -23,7 +23,7 @@ def read_xls(path,sheet=0):
     return documents 
 
 def save_to_mongo(documents):
-    client =MongoClient('192.168.22.80',27017)
+    client =MongoClient('xx.xx.xx.xx',27017)
     db = client.weibo_lg
     co = db.weibo 
 
