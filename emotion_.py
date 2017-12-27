@@ -9,6 +9,7 @@ import codecs
 import re 
 import chardet
 
+
 def sentence_emotion(sentence,senDict,degreeDict):
     '''
     判断输入的sentence的情感
@@ -61,7 +62,7 @@ def classifyWords(wordDict,senDict,degreeDict):
 
 def emotionWord():
     #情感词
-    with open('BosonNLP_sentiment_score.txt','r') as f_in:
+    with open('./BosonNLP_sentiment_score.txt','r') as f_in:
         senList = f_in.readlines()
     senDict = defaultdict()
    # nn = 0
@@ -70,6 +71,29 @@ def emotionWord():
         k = s.strip().split(' ')[0].decode('utf8')
         senDict[k] = float(s.strip().split(' ')[1])
     return senDict 
+
+def emotionWord1():
+    #改用台湾情感词典,但是情感值是自定义的,这个情感值问题待解决
+    #负面词
+    with open('./ntusd_negative.txt','r') as f_in:
+        senList = f_in.readlines()
+    weight = -0.5
+    senDict = defaultdict()
+    for s in senList:
+        s = s.strip().decode('utf8')
+        senDict[s] = weight 
+    #正面情感词
+    with open('./ntusd_positive.txt','r') as f_in:
+        senList1 = f_in.readlines()
+    weight = 3.5
+    for s in senList1:
+        s = s.strip().decode('utf8')
+        senDict[s] = weight 
+    return senDict 
+    
+
+
+
 
 def degree():
     with open('degree.txt','r') as f_in:
@@ -144,7 +168,7 @@ def run():
 
     #comments = comments[:100]
 
-    senDict = emotionWord()
+    senDict = emotionWord1()
     degreeDict = degree()
     dict_emo = {}
     weightlist = []
@@ -160,13 +184,14 @@ def run():
         wordlist1.extend(wordlist)
     return weightlist,wordlist1
 
+
 if __name__ =='__main__':
     weightlist,wordlist = run()
-    with open('emotion_weight.txt','w') as f_out:
+    with open('emotion_weight_final.txt','w') as f_out:
         for i in weightlist:
             f_out.write(str(i))
             f_out.write('\n')
-    with open('emotion_word.txt','w') as f_out:
+    with open('emotion_word_final.txt','w') as f_out:
         print wordlist 
         for i in wordlist:
             try:
@@ -174,3 +199,7 @@ if __name__ =='__main__':
             except:
                 f_out.write(i.encode('utf8'))
             f_out.write('\n')
+
+
+
+
