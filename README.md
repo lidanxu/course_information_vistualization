@@ -4,7 +4,7 @@
 
 1. 关键词提取
    1. 使用结巴分词自带的Tfidf和TextRank两种算法
-   2. 应用Tfidf算法时，需要生成训练集的idf文件（调用weibo_.py中的make__idf_file函数）
+   2. 应用Tfidf算法时，需要生成训练集的idf文件（调用weibo_.py中的make_idf_file函数）
    3. 比较两种算法的结果，最终选定Tfidf算法提取文本关键词
 
 2. 情感分析
